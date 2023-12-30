@@ -54,7 +54,7 @@ First, install the general dependencies:
     
 If you want to build with the wallet and Qt GUI you also want to install the following (this example is under Ubuntu):
 
-    sudo apt-get install libssl-dev libboost-all-dev qt5-default libprotobuf-dev libqrencode4 libdb++-dev libdb-dev miniupnpc
+    sudo apt-get install libssl-dev libboost-all-dev qt5-default libprotobuf-dev libqrencode4 libdb5.3-dev libdb5.3++-dev miniupnpc
 
 A host toolchain (`build-essential`) is necessary because some dependency
 packages (such as `protobuf`) need to build host utilities that are used in the

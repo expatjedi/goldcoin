@@ -70,23 +70,23 @@ config_opts="runtime-link=shared threadapi=pthread threading=multi link=static v
 
 BerkeleyDB is only necessary for the wallet functionality. To skip this, pass `--disable-wallet` to `./configure`.
 
-See "Berkeley DB" in [build_unix.md](build_unix.md) for instructions on how to build BerkeleyDB 4.8.
+See "Berkeley DB" in [build_unix.md](build_unix.md) for instructions on how to build BerkeleyDB 5.3.
 You cannot use the BerkeleyDB library from ports, for the same reason as boost above (g++/libstd++ incompatibility).
 
 ```bash
 # Pick some path to install BDB to, here we create a directory within the goldcoin directory
 GOLDCOIN_ROOT=$(pwd)
-BDB_PREFIX="${GOLDCOIN_ROOT}/db4"
+BDB_PREFIX="${GOLDCOIN_ROOT}/db5"
 mkdir -p $BDB_PREFIX
 
 # Fetch the source and verify that it is not tampered with
-curl -o db-4.8.30.NC.tar.gz 'http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz'
-echo '12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef  db-4.8.30.NC.tar.gz' | sha256 -c
-# MUST output: (SHA256) db-4.8.30.NC.tar.gz: OK
-tar -xzf db-4.8.30.NC.tar.gz
+curl -o db-5.3.28.NC.tar.gz 'http://download.oracle.com/berkeley-db/db-5.3.28.NC.tar.gz'
+echo '76a25560d9e52a198d37a31440fd07632b5f1f8f9f2b6d5438f4bc3e7c9013efdb  db-5.3.28.NC.tar.gz' | sha256 -c
+# MUST output: (SHA256) db-5.3.28.NC.tar.gz: OK
+tar -xzf db-5.3.28.NC.tar.gz
 
 # Build the library and install to specified prefix
-cd db-4.8.30.NC/build_unix/
+cd db-5.3.28.NC/build_unix/
 #  Note: Do a static build so that it can be embedded into the executable, instead of having to find a .so at runtime
 ../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX CC=egcc CXX=eg++ CPP=ecpp
 make install # do NOT use -jX, this is broken
